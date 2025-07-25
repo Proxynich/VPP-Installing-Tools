@@ -147,17 +147,7 @@ The FRRouting repository provides the following versions and directories:
    ```bash
    dpdk-devbind.py --status
    ```
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps:
-1. Fork the repository  
-2. Create a feature branch (`git checkout -b feature/your-feature-name`)  
-3. Commit your changes  
-4. Push to your fork and submit a pull request  
-
+   
 ---
 
 ## 📞 Support
