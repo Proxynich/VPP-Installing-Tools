@@ -1,0 +1,43 @@
+# Create a loopback interface
+create loopback interface instance 0
+lcp create loop0 host-if loop0
+set interface state loop0 up
+
+# Setting sfplus1
+set interface mtu packet 9000 sfplus1
+set interface state sfplus1 up
+lcp create sfplus1 host-if sfplus1
+
+# Setting sfplus2
+set interface mtu packet 9000 sfplus2
+set interface state sfplus2 up
+lcp create sfplus2 host-if sfplus2
+
+# Setting cqsfp1
+set interface mtu packet 9000 cqsfp1
+set interface state cqsfp1 up
+lcp create cqsfp1 host-if cqsfp1
+
+# Setting cqsfp2
+set interface mtu packet 9000 cqsfp2
+set interface state cqsfp2 up
+lcp create cqsfp2 host-if cqsfp2
+
+# Create Bond100G
+create bond mode lacp load-balance l34 id 0
+bond add BondEthernet0 cqsfp1
+bond add BondEthernet0 cqsfp2
+set interface state BondEthernet0 up
+lcp create BondEthernet0 host-if BondEthernet0
+
+# Create Bond11
+create bond mode lacp load-balance l34 id 11
+bond add BondEthernet11 sfplus1
+bond add BondEthernet11 sfplus2
+set interface state BondEthernet11 up
+lcp create BondEthernet11 host-if BondEthernet11
+
+# Create Vlan 10 Interface
+create sub-interfaces BondEthernet0 10
+set interface mtu packet 1500 BondEthernet0.10
+set interface state BondEthernet0.10 up
